@@ -1,0 +1,35 @@
+---
+output: github_document
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# spheniscus
+
+The goal of spheniscus is to provide you with TDR raw data so you can clean it directly from device to R
+
+## Installation
+
+This package is to be only on the development version from [GitHub](https://github.com/).
+```{r, eval=FALSE}
+install.packages("devtools")
+devtools::install_github("MiriamLL/spheniscus")
+```
+
+## Raw data
+```{r example}
+library(spheniscus)
+```
+
+```{r}
+head(TDR_raw)
+```
+
+
