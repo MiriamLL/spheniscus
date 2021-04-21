@@ -8,7 +8,7 @@
 #'
 #' @usage data(TDR_raw)
 #'
-#' @format An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
+#' @format A rda data with one column and 264197 rows
 #'
 #' @keywords datasets
 #'
