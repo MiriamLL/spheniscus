@@ -53,7 +53,7 @@ Extrae la información de presión de los datos crudos de los
 dispositivos. <br> Extracts pressure data.
 
 ``` r
-TDR_pressure<-cut_rawdata(data=TDR_raw, 
+TDR_pressure<-extract_pressure(data=TDR_raw, 
                           row_start='Data Block 1', 
                           row_end = 'Data Block 2')
 ```
@@ -64,7 +64,7 @@ Corta periodos de tiempo de acuerdo a nuestro interés. <br> Cuts data to
 have only periods of interest.
 
 ``` r
-TDR_trip<-cut_trip(data=TDR_pressure,
+TDR_trip<-extract_trip(data=TDR_pressure,
                    timeformat="%d-%m-%Y %H:%M:%S",
                    trip_start="30-11-2018 20:43:24",
                    trip_end="01-12-2018 20:16:19")

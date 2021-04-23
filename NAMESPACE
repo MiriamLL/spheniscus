@@ -3,4 +3,6 @@
 export("%>%")
 export(cut_rawdata)
 export(cut_trip)
+export(extract_pressure)
+export(extract_trip)
 importFrom(magrittr,"%>%")
