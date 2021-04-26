@@ -19,4 +19,6 @@ Imports:
     dplyr,
     magrittr,
     tidyr,
-    rlang
+    rlang,
+    ggplot2,
+    stats
