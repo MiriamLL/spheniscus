@@ -20,10 +20,11 @@ identify_dives<-function(TDR_corrected=TDR_corrected,
 
   TDR_dives$dives<-(cumsum(c(1L, diff(TDR_dives$numeric_sequence)) != 1L))
 
+  data<-TDR_dives
   var1<-"dives"
-  var2<-"corrected depth"
+  var2<-"corrected_depth"
 
-  table_dives<-TDR_dives%>%
+  table_dives<-data%>%
     dplyr::group_by(.data[[var1]])%>%
     dplyr::summarise(max_depth=max(.data[[var2]]),
                      mean_depth=mean(.data[[var2]]),
