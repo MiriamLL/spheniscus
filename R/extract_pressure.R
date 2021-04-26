@@ -30,10 +30,10 @@ extract_pressure<-function(data=data,
   pressure_recordings<-as.data.frame(pressure_recordings)
 
   TDR_pressure<-pressure_recordings %>%
-    tidyr::separate(pressure_recordings, c("time", "pressure"),sep=',')
+    tidyr::separate(pressure_recordings, c("time", "depth"),sep=',')
 
   names(TDR_pressure)[1]<-"tStamp"
-  names(TDR_pressure)[2]<-"Pressure"
+  names(TDR_pressure)[2]<-"depth"
 
   numeric_sequence<-nrow(TDR_pressure)
   numeric_sequence<-as.numeric(numeric_sequence)
