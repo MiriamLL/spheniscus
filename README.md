@@ -26,7 +26,7 @@ library(spheniscus)
 
 ## Data
 
-### TDR\_raw
+### TDR\_raw 📥
 
 Agrega los datos crudos como objeto. <br> Includes raw data as object.
 
@@ -37,18 +37,27 @@ TDR_raw<-TDR_raw
 Las columnas no estan separadas porque primero hay que cortar partes del
 archivo. <br> Loads raw data. Columns are not separated on purpose.
 
+### TDR\_dives 🤿
+
+Incluye todos los buceos durante el viaje. <br> Includes all dives
+during the foraging trip.
+
+``` r
+TDR_dives<-TDR_dives
+```
+
 ## Functions
 
 ### extract\_rawdata 🧹
 
 Extrae la información de presión de los datos crudos de los
-dispositivos. <br> En mis dispositivos la presion se empieza a medir
-despues de ‘Data Block 1’ y termina de medie presion cuando empieza
+dispositivos. <br> En mis dispositivos la presión se empieza a medir
+después de ‘Data Block 1’ y termina de medir presión cuando empieza
 ‘Data Block 2’, por eso use estos separadores en row\_start y
 row\_end.<br>
 
 Extracts pressure data.<br> In my devices the pressure starts to be
-recorder after the row ‘Data Block 1’ and the last recording is just
+recorded after the row ‘Data Block 1’ and the last recording is just
 before ‘Data Block 2’, that the reason to use those names in row\_start
 and row\_end.<br>
 
@@ -60,7 +69,7 @@ TDR_pressure<-extract_pressure(data=TDR_raw,
 
 ### extract\_trip ✂️
 
-Corta periodos de tiempo de acuerdo a nuestro interés. <br> Ésta
+Corta periodos de tiempo de acuerdo a nuestro interés. <br> La
 información se obtuvo de dispositivos GPS, trip\_start es cuando
 salieron de la colonia y trip\_end cuando regresaron.
 
@@ -87,21 +96,31 @@ plot_depth(TDR_trip = TDR_trip,
                    time_column='daytime')
 ```
 
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+
 ## correct\_zero 📐
 
 Correr funcion, si hay que corregir el cero incluir factor de corrección
-aquí. <br> En el ejemplo corregí el cero usando -0.65 m. Esto tiene que
+aquí. <br> En el ejemplo corregí el cero usando -0.80 m. Esto tiene que
 ser adjustado de manera manual.
 
-Run function, this is to correct ceros, if manual correction is needed
-only. <br> In the example below I corrected the zero using -0.65 m. This
-is to be adjusted accordingly.
+Run function, this is to correct zeros, if manual correction is needed.
+<br> In the example below I corrected the zero using -0.80 m. This is to
+be adjusted accordingly.
 
 ``` r
 TDR_corrected<-correct_zero(TDR_trip = TDR_trip,
              depth_column='Pressure',
-             extra_correction=-0.65)
+             extra_correction=-0.80)
 ```
+
+``` r
+plot_depth(TDR_trip = TDR_corrected,
+            depth_column='corrected_depth',
+            time_column='daytime')
+```
+
+<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
 
 ## identify\_dives 🐟
 
@@ -124,7 +143,7 @@ TDR_dives<-identify_dives(TDR_corrected=TDR_corrected,
 
 ## dive\_parameters 🤿
 
-Esta función calcula los parametros del viaje completo. Incluye  
+Esta función calcula los parametros del viaje completo. Incluye:  
 - promedio de la profundidad maxima de buceo,  
 - desviacion estandar de la profundidad maxima de bcueo,  
 - el maximo de profundidad, la duracion promedio de los buceos,  
@@ -135,14 +154,15 @@ Esta función calcula los parametros del viaje completo. Incluye
 segundos.
 
 This function calculates the dive parameters from the foraging trip. It
-includes: - average maximum depth  
+includes:  
+- average maximum depth  
 - standard deviation of the maximum depth  
 - maximum depth during the trip  
 - average dive duration  
 - standard deviation of dive duration  
 - maximum dive duration  
 - total number of dives  
-**Nota** Diving depths are in meters, duration is in seconds
+**Note** Diving depths are in meters, duration is in seconds
 
 ``` r
 dive_parameters<-calculate_diveparams(TDR_dives)
