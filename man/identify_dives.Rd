@@ -24,5 +24,5 @@ returns a data frame with each dive duration, maximum depth, mean and standard d
 This functions identify dives according to a parameter. Esta funcion identifica buceos a partir de cierta profundidad/
 }
 \examples{
-table_dives<-identify_dives(TDR_corrected=TDR_corrected,real_dives=3,depth_column='corrected_depth')
+TDR_dives<-identify_dives(TDR_corrected=TDR_corrected,real_dives=3,depth_column='corrected_depth')
 }

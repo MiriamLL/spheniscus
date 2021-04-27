@@ -7,24 +7,25 @@
 #' @return returns a data frame with each dive duration, maximum depth, mean and standard deviation depth
 #' @export
 #'
-#' @examples table_dives<-identify_dives(TDR_corrected=TDR_corrected,real_dives=3,depth_column='corrected_depth')
+#' @examples TDR_dives<-identify_dives(TDR_corrected=TDR_corrected,real_dives=3,depth_column='corrected_depth')
+#' @importFrom rlang .data
 identify_dives<-function(TDR_corrected=TDR_corrected,
                          depth_column=depth_column,
                          real_dives=real_dives){
 
   TDR_corrected$dives<-as.numeric(as.character(TDR_corrected[,depth_column]))
 
-  TDR_dives<-subset(TDR_corrected,TDR_corrected$dives >= real_dives)
+  all_dives<-subset(TDR_corrected,TDR_corrected$dives >= real_dives)
 
-  TDR_dives$numeric_sequence<-as.integer(TDR_dives$numeric_sequence)
+  all_dives$numeric_sequence<-as.integer(all_dives$numeric_sequence)
 
-  TDR_dives$dives<-(cumsum(c(1L, diff(TDR_dives$numeric_sequence)) != 1L))
+  all_dives$dives<-(cumsum(c(1L, diff(all_dives$numeric_sequence)) != 1L))
 
-  data<-TDR_dives
+  data<-all_dives
   var1<-"dives"
   var2<-"corrected_depth"
 
-  table_dives<-data%>%
+  TDR_dives<-data%>%
     dplyr::group_by(.data[[var1]])%>%
     dplyr::summarise(max_depth=max(.data[[var2]]),
                      mean_depth=mean(.data[[var2]]),
@@ -32,6 +33,6 @@ identify_dives<-function(TDR_corrected=TDR_corrected,
                      dive_duration=length(.data[[var1]]))
 
 
-  return(table_dives)
+  return(TDR_dives)
   cat(paste0('A total of ',length(unique(TDR_dives$dives)),' were detected. Real dives were considered when the animal was deeper than ', real_dives,'m'))
 }
