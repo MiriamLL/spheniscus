@@ -4,13 +4,13 @@
 El objetivo de este paquete es:  
 - Hacer disponibles datos crudos de TDR para que se familiaricen con el
 formato.  
-- Ayudarte a limpiar esos los datos de TDR para obtener parametros de
-buceo de los animales muestreados.
+- Ayudarte a limpiar los datos de TDR para obtener parametros de buceo
+de los animales muestreados.
 
 The goal of spheniscus is to:  
 - Provide raw data from TDR (time and depth recorder) devices to get
 familiar with the format.  
-- Help to obtain diving parameters from the sampled individuals.
+- Helps to obtain diving parameters from the sampled individuals.
 
 ## Installation
 
@@ -57,8 +57,7 @@ dispositivos. <br> En los dispositivos TDR (Cefas G5+) la presión se
 empieza a medir después de ‘Data Block 1’ y termina de medir presión
 cuando empieza ‘Data Block 2’. Estos nombres fueron usados como
 separadores en row\_start y row\_end. Si tu dispositivo usa otros
-separadores como por ejemplo ‘Data Block 0’ hay que ajustarse
-acorde.<br>
+separadores como por ejemplo ‘Data Block 0’ hay que ajustar acorde.<br>
 
 Extracts depth data from raw data.<br> In devices TDR (Cefas G5+) the
 pressure starts to be recorded after the row ‘Data Block 1’ and the last
@@ -108,7 +107,7 @@ plot_depth(TDR_trip = TDR_trip,
 
 ## correct\_zero 📐
 
-Esta funcion te permite corregir el zero usando un factor de corrección.
+Esta función te permite corregir el cero usando un factor de corrección.
 <br> En el ejemplo, corregí el cero usando -0.80 m. Este valor fue
 ajustado de manera manual.
 
@@ -136,16 +135,17 @@ plot_depth(TDR_trip = TDR_corrected,
 
 ## identify\_dives 🐟
 
-Esta función identifica los buceos reales, en el ejemplo, cuando bucean
-más profundo de 3 metros. <br> Identifica cada buceo como unidades
+Esta función identifica identifica cada buceo como unidades
 individuales, y les asigna a cada inmersión un numero, una profundidad
 media de buceo, una profundidad máxima de buceo, una duración media de
-buceo y una duración máxima de buceo.
+buceo y una duración máxima de buceo.  
+En el ejemplo, los buceos reales fueron considerados cuando el animal se
+encontraba más profundo de 3 metros.
 
-This functions identify real dives, in the example, when the individual
-was deeper than 3 m from the surface. <br> Then identifies every dive as
-a individual dive assigning a number, a mean diving depth, a maximum
-diving depth, a dive duration, a maximum dive duration.
+This function identifies every dive as a individual dive, assigns a
+number, a mean diving depth, a maximum diving depth, a dive duration, a
+maximum dive duration. In the example, real dives were considered when
+the animal was deeper than 3 m from the surface.
 
 ``` r
 TDR_dives<-identify_dives(TDR_corrected=TDR_corrected,
@@ -155,13 +155,13 @@ TDR_dives<-identify_dives(TDR_corrected=TDR_corrected,
 
 ## dive\_parameters 🤿
 
-Esta función calcula los parametros del viaje completo.  
+Esta función calcula los parámetros del viaje completo.  
 Incluye:  
-- promedio de la profundidad maxima de buceo,  
-- desviacion estandar de la profundidad maxima de bcueo,  
-- el maximo de profundidad, la duracion promedio de los buceos,  
-- la desviacion estandar de la duracion de los buceos, y  
-- la duracion maxima de buceo, asi como  
+- promedio de la profundidad máxima de buceo,  
+- desviación estándar de la profundidad máxima de buceo,  
+- el máximo de profundidad, la duración promedio de los buceos,  
+- la desviación estándar de la duración de los buceos, y  
+- la duración máxima de buceo, así como  
 - el total de buceos durante el viaje.  
 **Nota** La profundidad de buceo se da en metros, la duración en
 segundos.
@@ -175,7 +175,7 @@ It includes:
 - standard deviation of dive duration  
 - maximum dive duration  
 - total number of dives  
-**Note** Diving depths are in meters, duration is in seconds
+**Note** Diving depths are in meters, durations are in seconds
 
 ``` r
 dive_parameters<-calculate_diveparams(TDR_dives)
