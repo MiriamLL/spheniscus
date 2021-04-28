@@ -1,5 +1,6 @@
 
 # spheniscus 🐧
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4724480.svg)](https://doi.org/10.5281/zenodo.4724480)
 
 El objetivo de este paquete es:  
 - Hacer disponibles datos crudos de TDR para que se familiaricen con el
@@ -196,4 +197,4 @@ Please citate the package as:
 Lerma, M (2021). Package spheniscus (Version v1.0). Zenodo.
 <http://doi.org/10.5281/zenodo.4709837>
 
-[![DOI](https://zenodo.org/badge/360213200.svg)](https://zenodo.org/badge/latestdoi/360213200)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4724480.svg)](https://doi.org/10.5281/zenodo.4724480)
