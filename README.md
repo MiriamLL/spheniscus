@@ -195,6 +195,6 @@ al. (in preparation)
 
 Please citate the package as:  
 Lerma, M (2021). Package spheniscus (Version v1.0). Zenodo.
-<http://doi.org/10.5281/zenodo.4709837>
+<https://doi.org/10.5281/zenodo.4724480>
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4724480.svg)](https://doi.org/10.5281/zenodo.4724480)
