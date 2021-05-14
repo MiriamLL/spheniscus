@@ -1,22 +1,18 @@
 
-# spheniscus 🐧
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4724480.svg)](https://doi.org/10.5281/zenodo.4724480)
-
-El objetivo de este paquete es:  
-- Hacer disponibles datos crudos de TDR para que se familiaricen con el
-formato.  
-- Ayudarte a limpiar los datos de TDR para obtener parametros de buceo
-de los animales muestreados.
+# spheniscus <img src="man/figures/logo.png" align="right" width = "120px"/>
 
 The goal of spheniscus is to:  
 - Provide raw data from TDR (time and depth recorder) devices to get
 familiar with the format.  
 - Helps to obtain diving parameters from the sampled individuals.
 
+**[Enlace en
+español](https://www.miriam-lerma.com/posts/2021-05-14-spheniscus/).**
+
 ## Installation
 
-El paquete estará disponible solo por GitHub <br> This package is to be
-only on the development version from [GitHub](https://github.com/).
+This package is to be only on the development version from
+[GitHub](https://github.com/).
 
 ``` r
 install.packages("devtools")
@@ -31,19 +27,17 @@ library(spheniscus)
 
 ### TDR\_raw 📥
 
-Agrega los datos crudos como objeto. <br> Includes raw data as object.
+Includes raw data as object.
 
 ``` r
 TDR_raw<-TDR_raw
 ```
 
-Las columnas no estan separadas ya que primero hay que cortar partes del
-archivo. <br> Loads raw data. Columns are not separated on purpose.
+Loads raw data. Columns are not separated on purpose.
 
 ### TDR\_dives 🤿
 
-Incluye todos los buceos durante el viaje. <br> Includes all dives
-during the foraging trip.
+Includes all dives during the foraging trip.
 
 ``` r
 TDR_dives<-TDR_dives
@@ -52,13 +46,6 @@ TDR_dives<-TDR_dives
 ## Functions
 
 ### extract\_rawdata 🧹
-
-Extrae la información de profundidad de los datos crudos de los
-dispositivos. <br> En los dispositivos TDR (Cefas G5+) la presión se
-empieza a medir después de ‘Data Block 1’ y termina de medir presión
-cuando empieza ‘Data Block 2’. Estos nombres fueron usados como
-separadores en row\_start y row\_end. Si tu dispositivo usa otros
-separadores como por ejemplo ‘Data Block 0’ hay que ajustar acorde.<br>
 
 Extracts depth data from raw data.<br> In devices TDR (Cefas G5+) the
 pressure starts to be recorded after the row ‘Data Block 1’ and the last
@@ -73,12 +60,6 @@ TDR_pressure<-extract_pressure(data=TDR_raw,
 
 ### extract\_trip ✂️
 
-Corta periodos de tiempo de acuerdo a nuestro interés. <br> La
-información se obtuvo de dispositivos GPS, trip\_start es cuando
-salieron de la colonia y trip\_end cuando regresaron.  
-Los datos fueron recortados para incluir sólo información durante el
-viaje de alimentación.
-
 Extracts data to have only periods of interest. <br> This information
 was obtain from the GPS devices, trip\_start is when the individual left
 the colony and trip\_end when it returned.
@@ -92,10 +73,6 @@ TDR_trip<-extract_trip(data=TDR_pressure,
 
 ### plot\_depth 🎨
 
-Crea un grafico con el perfil de buceos. Marca el cero con una linea
-roja. <br> El objetivo de este gráfico es que te permita decidir si
-debes corregir el cero.
-
 Creates a plot with the diving profile. Adds a red line for the zero.
 
 ``` r
@@ -108,10 +85,6 @@ plot_depth(TDR_trip = TDR_trip,
 
 ## correct\_zero 📐
 
-Esta función te permite corregir el cero usando un factor de corrección.
-<br> En el ejemplo, corregí el cero usando -0.80 m. Este valor fue
-ajustado de manera manual.
-
 This function is to correct zeros, if manual correction is needed. <br>
 In the example below I corrected the zero using -0.80 m. This is to be
 adjusted accordingly.
@@ -121,8 +94,6 @@ TDR_corrected<-correct_zero(TDR_trip = TDR_trip,
              depth_column='Pressure',
              extra_correction=-0.80)
 ```
-
-Puedes volver a crear el gráfico para confirmar que se corrigió el cero.
 
 You can plot the depth again to confirm that the zero was corrected.
 
@@ -136,13 +107,6 @@ plot_depth(TDR_trip = TDR_corrected,
 
 ## identify\_dives 🐟
 
-Esta función identifica identifica cada buceo como unidades
-individuales, y les asigna a cada inmersión un numero, una profundidad
-media de buceo, una profundidad máxima de buceo, una duración media de
-buceo y una duración máxima de buceo.  
-En el ejemplo, los buceos reales fueron considerados cuando el animal se
-encontraba más profundo de 3 metros.
-
 This function identifies every dive as a individual dive, assigns a
 number, a mean diving depth, a maximum diving depth, a dive duration, a
 maximum dive duration. In the example, real dives were considered when
@@ -155,17 +119,6 @@ TDR_dives<-identify_dives(TDR_corrected=TDR_corrected,
 ```
 
 ## dive\_parameters 🤿
-
-Esta función calcula los parámetros del viaje completo.  
-Incluye:  
-- promedio de la profundidad máxima de buceo,  
-- desviación estándar de la profundidad máxima de buceo,  
-- el máximo de profundidad, la duración promedio de los buceos,  
-- la desviación estándar de la duración de los buceos, y  
-- la duración máxima de buceo, así como  
-- el total de buceos durante el viaje.  
-**Nota** La profundidad de buceo se da en metros, la duración en
-segundos.
 
 This function calculates the dive parameters from the foraging trip.  
 It includes:  
@@ -188,13 +141,11 @@ dive_parameters<-calculate_diveparams(TDR_dives)
 
 # Citation
 
-Este script acompaña una publicacion en pingüinos por Lerma et al. (en
-preparacion)  
 This script is supporting information from a publication by Lerma et
 al. (in preparation)
 
 Please citate the package as:  
 Lerma, M (2021). Package spheniscus (Version v1.0). Zenodo.
-<https://doi.org/10.5281/zenodo.4724480>
+<http://doi.org/10.5281/zenodo.4709837>
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4724480.svg)](https://doi.org/10.5281/zenodo.4724480)
+[![DOI](https://zenodo.org/badge/360213200.svg)](https://zenodo.org/badge/latestdoi/360213200)
