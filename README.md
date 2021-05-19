@@ -2,9 +2,9 @@
 # spheniscus <img src="man/figures/logo.png" align="right" width = "120px"/>
 
 The goal of spheniscus is to:  
-- Provide raw data from TDR (time and depth recorder) devices to get
+- Provides raw and clean data from TDRs devices (time and depth recorder) to get
 familiar with the format.  
-- Helps to obtain diving parameters from the sampled individuals.
+- Provides functions to clean the TDR data and to obtain diving parameters from the sampled individuals.
 
 **[Enlace en
 español](https://www.miriam-lerma.com/posts/2021-05-14-spheniscus/).**
@@ -27,17 +27,17 @@ library(spheniscus)
 
 ### TDR\_raw 📥
 
-Includes raw data as object.
+Loads raw data as object.
 
 ``` r
 TDR_raw<-TDR_raw
 ```
 
-Loads raw data. Columns are not separated on purpose.
+Loads raw data. Note that columns are not separated on purpose.
 
 ### TDR\_dives 🤿
 
-Includes all dives during the foraging trip.
+Loads all dives during the foraging trip.
 
 ``` r
 TDR_dives<-TDR_dives
@@ -60,7 +60,7 @@ TDR_pressure<-extract_pressure(data=TDR_raw,
 
 ### extract\_trip ✂️
 
-Extracts data to have only periods of interest. <br> This information
+Cuts periods inside the data to have only periods of interest. <br> In the example, the information
 was obtain from the GPS devices, trip\_start is when the individual left
 the colony and trip\_end when it returned.
 
@@ -141,10 +141,10 @@ dive_parameters<-calculate_diveparams(TDR_dives)
 
 # Citation
 
-This script is supporting information from a publication by Lerma et
+- This script is supporting information from a publication by Lerma et
 al. (in preparation)
 
-Please citate the package as:  
+- Please citate the package as:  
 Lerma, M (2021). Package spheniscus (Version v1.0). Zenodo.
 <http://doi.org/10.5281/zenodo.4709837>
 
